@@ -11,6 +11,7 @@ import org.apache.storm.tuple.Values;
 import org.apache.storm.utils.Utils;
 
 public class ConfigurationSpout extends BaseRichSpout{
+	
 	int genInterval	=	10000;
 	int alreadyGenerated	=	0;
 	int changeGenerationRate=	32;
