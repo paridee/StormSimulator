@@ -7,8 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import operator.Bolt;
 import operator.IntegerTuple;
@@ -16,7 +16,7 @@ import operator.IntermediateBolt;
 import operator.RandomIntegerGenerator;
 
 public class SimulatedSeeder implements Simulation {
-	public final static Logger logger	=	LogManager.getLogger(SimulatedSeeder.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedSeeder.class);
 	int seedInterval	=	0;
 	long nextSeed		=	0;
 	Bolt firstBolt;

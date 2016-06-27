@@ -1,10 +1,10 @@
 package SimulationElements;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SimulatedEpsilonGreedyChooser implements SimulatedPolicyChooser {
-	public final static Logger logger	=	LogManager.getLogger(SimulatedEpsilonGreedyChooser.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedEpsilonGreedyChooser.class);
 	
 	double	epsilon	=	0.2;
 	

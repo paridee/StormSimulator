@@ -1,10 +1,10 @@
 package SimulationElements;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SimulatedQueueMonitor implements Simulation{
-	public final static Logger logger	=	LogManager.getLogger(SimulatedQueueMonitor.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedQueueMonitor.class);
 	public int 			timesPerInterval	=	1;
 	public double 		weight				=	0.3;
 	private long 		nextEvent			=	-1;	

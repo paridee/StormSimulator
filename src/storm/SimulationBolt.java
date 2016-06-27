@@ -6,11 +6,13 @@ import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import SimulationElements.SimulationMain;
 
 public class SimulationBolt extends BaseBasicBolt{
-
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulationBolt.class);
 	/**
 	 * 
 	 */
@@ -18,6 +20,7 @@ public class SimulationBolt extends BaseBasicBolt{
 
 	@Override
 	public void execute(Tuple arg0, BasicOutputCollector arg1) {
+		logger.debug("incoming tuple");
 		// TODO Auto-generated method stub
 		 //SimulationMain main	=	new SimulationMain(32,3,0,450,epsilon,yota,alpha,beginning);
 		 Thread executor	=	new Thread();

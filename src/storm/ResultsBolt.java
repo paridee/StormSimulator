@@ -1,16 +1,17 @@
 package storm;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import SimulationElements.SimulationMain;
 
 public class ResultsBolt extends BaseBasicBolt{
-	public final static Logger logger	=	LogManager.getLogger(ResultsBolt.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(ResultsBolt.class);
 	static double 	bestEpsilon		=	0;
 	static double 	bestAlpha		=	0;
 	static double 	bestYota		=	0;

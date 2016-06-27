@@ -2,8 +2,8 @@ package operator;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import SimulationElements.IntervalManager;
 import SimulationElements.SimulatedEvalIntervalManager;
@@ -11,7 +11,7 @@ import SimulationElements.Simulation;
 import SimulationElements.SimulationScheduler;
 
 public class FinalBolt extends Bolt {
-	public final static Logger logger	=	LogManager.getLogger(FinalBolt.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(FinalBolt.class);
 	public ArrayList<ArrayList<IntegerTuple>>			queues		=	new ArrayList<ArrayList<IntegerTuple>>();
 	public ArrayList<FinalBoltWorker>	workerList	=	new ArrayList<FinalBoltWorker>();
 	public int								maxLevel	=	1;

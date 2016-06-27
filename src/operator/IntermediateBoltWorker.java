@@ -2,8 +2,8 @@ package operator;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import SimulationElements.IntervalManager;
 import SimulationElements.SimulatedEvalIntervalManager;
@@ -13,7 +13,7 @@ import SimulationElements.SimulationScheduler;
 import SimulationElements.ValueGenerator;
 
 public class IntermediateBoltWorker implements Simulation {
-	public final static Logger logger	=	LogManager.getLogger(IntermediateBoltWorker.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(IntermediateBoltWorker.class);
 	long nextFree	=	0;
 	long exTimes[]	=	new long[10];	//take execution times in a bucket of 10
 	int id				=	0;	

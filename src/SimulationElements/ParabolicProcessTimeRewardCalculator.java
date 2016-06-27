@@ -2,8 +2,8 @@ package SimulationElements;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import Jama.Matrix;
 import operator.Bolt;
@@ -17,7 +17,7 @@ public class ParabolicProcessTimeRewardCalculator implements SimulatedRewardCalc
 	 * -right (X axis) intercept
 	 * -maximum reward
 	 */
-	public final static Logger LOG	=	LogManager.getLogger(ParabolicProcessTimeRewardCalculator.class);
+	public final static Logger LOG	=	LoggerFactory.getLogger(ParabolicProcessTimeRewardCalculator.class);
 	SimulatedLatencyMonitor simMon;
 	double a			=	0;
 	double b			=	0;

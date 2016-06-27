@@ -2,12 +2,12 @@ package SimulationElements;
 
 import java.text.DecimalFormat;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class SimulatedDynaQ implements Simulation {
-	public final static Logger logger	=	LogManager.getLogger(SimulatedDynaQ.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedDynaQ.class);
 	
 	private int states;
 	private int actions;

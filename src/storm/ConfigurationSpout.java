@@ -9,9 +9,11 @@ import org.apache.storm.topology.base.BaseRichSpout;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Values;
 import org.apache.storm.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfigurationSpout extends BaseRichSpout{
-	
+	public final static Logger logger	=	LoggerFactory.getLogger(ConfigurationSpout.class);
 	int genInterval	=	10000;
 	int alreadyGenerated	=	0;
 	int changeGenerationRate=	32;
@@ -27,7 +29,6 @@ public class ConfigurationSpout extends BaseRichSpout{
 
 	@Override
 	public void nextTuple() {
-		Utils.sleep(genInterval);
 		double 	epsilon;
 		double 	alpha;
 		double 	yota;
@@ -39,6 +40,7 @@ public class ConfigurationSpout extends BaseRichSpout{
 					epsilon	=	k*0.1;
 					for(int l=1;l<=maxTh/2;l++){
 						collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
+						this.logger.debug("generated tuple");
 						if(msgId>32){
 							Utils.sleep(genInterval);
 						}

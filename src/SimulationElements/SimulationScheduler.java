@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import operator.IntermediateBolt;
 
 public class SimulationScheduler {
-	public final static Logger logger	=	LogManager.getLogger(SimulationScheduler.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulationScheduler.class);
 	public long simulatedTime	=	0;
 	public long beginning		=	0;
 	private List<Long>	events	=	new ArrayList<Long>();

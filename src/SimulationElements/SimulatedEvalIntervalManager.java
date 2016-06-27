@@ -3,14 +3,14 @@ package SimulationElements;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SimulatedEvalIntervalManager implements IntervalManager {
 	private double 	worstCase	=	10;
 	private int 	expiration	=	100;
 	private int 	counter			=	0;
-	public final static Logger logger	=	LogManager.getLogger(SimulatedEvalIntervalManager.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedEvalIntervalManager.class);
 	PrintWriter		writer;
 	SimulationMain simMain;
 

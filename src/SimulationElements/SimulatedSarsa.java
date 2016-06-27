@@ -4,13 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import operator.IntermediateBolt;
 
 public class SimulatedSarsa implements Simulation,RewardEvaluation{
-	public final static Logger logger	=	LogManager.getLogger(SimulatedSarsa.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedSarsa.class);
 	int simulatedStep	=	0;
 	long nextStepTime	=	0;
 	SimulatedRewardCalculator	rewardCalculator;

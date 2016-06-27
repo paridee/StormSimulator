@@ -1,13 +1,14 @@
 package operator;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import SimulationElements.Simulation;
 import SimulationElements.SimulationScheduler;
 
 public class SimulatedLatencyMonitor implements Simulation {
-	public final static Logger logger	=	LogManager.getLogger(SimulatedLatencyMonitor.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedLatencyMonitor.class);
 	
 	double 	smoothing	=	0.3;
 	double 	average		=	0;

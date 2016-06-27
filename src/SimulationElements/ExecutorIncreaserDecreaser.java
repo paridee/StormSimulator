@@ -2,14 +2,14 @@ package SimulationElements;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import operator.Bolt;
 import operator.FinalBolt;
 
 public class ExecutorIncreaserDecreaser implements SimulatedActionExecutor {
-	public final static Logger logger	=	LogManager.getLogger(ExecutorIncreaserDecreaser.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(ExecutorIncreaserDecreaser.class);
 	ArrayList<Bolt> bolts;
 	int maxExecutorNumber;
 	int increaseValue;

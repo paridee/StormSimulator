@@ -1,13 +1,13 @@
 package SimulationElements;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SimulatedSoftmaxPolicyChooser implements SimulatedPolicyChooser {
 	
 	double e			=	2.71828;
 	double temperature	=	1;
-	public final static Logger logger	=	LogManager.getLogger(SimulatedSoftmaxPolicyChooser.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedSoftmaxPolicyChooser.class);
 	
 	public SimulatedSoftmaxPolicyChooser(double temp){
 		super();

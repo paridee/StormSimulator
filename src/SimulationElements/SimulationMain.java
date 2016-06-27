@@ -5,12 +5,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.prometheus.client.Gauge;
 import io.prometheus.client.exporter.MetricsServlet;
@@ -22,7 +21,7 @@ import operator.RandomIntegerGenerator;
 import operator.SimulatedLatencyMonitor;
 
 public class SimulationMain implements Runnable{
-	public final static Logger logger	=	LogManager.getLogger(SimulationMain.class);
+	public final static Logger logger	=	LoggerFactory.getLogger(SimulationMain.class);
 	static ReentrantLock 	thNumberLock	=	new ReentrantLock();
 	static int 				thNumberSim		=	0;
 	static int 				thMax			=	4;
