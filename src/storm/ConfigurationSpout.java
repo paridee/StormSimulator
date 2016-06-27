@@ -11,7 +11,7 @@ import org.apache.storm.tuple.Values;
 import org.apache.storm.utils.Utils;
 
 public class ConfigurationSpout extends BaseRichSpout{
-	int genInterval	=	60000;
+	int genInterval	=	10000;
 	int alreadyGenerated	=	0;
 	int changeGenerationRate=	32;
 	private SpoutOutputCollector collector;
@@ -38,6 +38,9 @@ public class ConfigurationSpout extends BaseRichSpout{
 					epsilon	=	k*0.1;
 					for(int l=1;l<=maxTh/2;l++){
 						collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
+						if(msgId>32){
+							Utils.sleep(genInterval);
+						}
 					}
 				}
 			}
