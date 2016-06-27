@@ -13,6 +13,7 @@ public class SimulationTopology {
         TopologyBuilder builder = new TopologyBuilder();
         Config conf = new Config();
     	conf.setMessageTimeoutSecs(360000);
+    	conf.setNumWorkers(4);
     	builder.setSpout("spout", new ConfigurationSpout(), 1);
     	builder.setBolt("firststage", new SimulationBolt(), 32).shuffleGrouping("spout");
     	builder.setBolt("finalstage", new SimulationBolt(), 1).shuffleGrouping("firststage");
