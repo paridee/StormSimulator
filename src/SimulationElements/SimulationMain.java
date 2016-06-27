@@ -218,7 +218,7 @@ public class SimulationMain implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-	  BasicConfigurator.configure();	//log4j
+	 // BasicConfigurator.configure();	log4j
 	  /*Server server = new Server(1234);
 	  ServletContextHandler context = new ServletContextHandler();
 	  context.setContextPath("/");
