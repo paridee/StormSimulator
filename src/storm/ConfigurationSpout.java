@@ -37,9 +37,9 @@ public class ConfigurationSpout extends BaseRichSpout{
 			double 	epsilon;
 			double 	alpha;
 			double 	yota;
-			for(int i=1;i<10;i++){
+			for(int i=10;i>0;i--){
 				yota	=	i*0.1;
-				for(int j=1;j<10;j++){
+				for(int j=10;j>0;j--){
 					alpha	=	j*0.1;
 					for(int k=0;k<10;k++){
 						epsilon	=	k*0.1;
