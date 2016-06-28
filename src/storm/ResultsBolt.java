@@ -1,6 +1,16 @@
 package storm;
 
 
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
@@ -16,7 +26,7 @@ public class ResultsBolt extends BaseBasicBolt{
 	static double 	bestAlpha		=	0;
 	static double 	bestYota		=	0;
 	static int 		bestStep		=	0;
-	static double  bestReward		=	0;
+	static double  	bestReward		=	Double.NEGATIVE_INFINITY;
 	/**
 	 * 
 	 */
@@ -25,7 +35,10 @@ public class ResultsBolt extends BaseBasicBolt{
 	@Override
 	public void execute(Tuple arg0, BasicOutputCollector arg1) {
 		// TODO Auto-generated method stub
-	
+		for(int i=0;i<100;i++){
+			//System.out.println("TESTTTTTTTTTTTTTTTTTTt");
+		}
+		//System.out.println("FINAL STEP");
 		double 	epsilon		=	arg0.getDouble(0);
 		double 	alpha		=	arg0.getDouble(2);;
 		double 	yota		=	arg0.getDouble(1);
@@ -37,7 +50,10 @@ public class ResultsBolt extends BaseBasicBolt{
 			bestYota		=	yota;
 			bestStep		=	step;
 			bestReward		=	reward;
-			logger.debug("New best configuration found, value "+reward+" epsilon "+epsilon+" alpha "+alpha+" yota "+yota+" step "+step);
+			String body		=	"New best configuration found, value "+reward+" epsilon "+epsilon+" alpha "+alpha+" yota "+yota+" step "+step;
+			String address	=	"paride.casulli@gmail.com";
+			String obj		=	"Better configuration found!";
+			this.sendEmail(body, obj, address);
 		}
 	}
 
@@ -45,6 +61,47 @@ public class ResultsBolt extends BaseBasicBolt{
 	public void declareOutputFields(OutputFieldsDeclarer arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public static void sendEmail(String text,String obj,String address){
+	    Properties props = new Properties();
+	    props.put("mail.smtp.host", "secure.alien8.it");
+	    props.put("mail.smtp.socketFactory.port", "465");
+	    props.put("mail.smtp.socketFactory.class",
+	            "javax.net.ssl.SSLSocketFactory");
+	    props.put("mail.smtp.auth", "true");
+	    props.put("mail.smtp.port", "465"); 
+	    Session session = Session.getDefaultInstance(props,
+	        new javax.mail.Authenticator() {
+	                            @Override
+	            protected PasswordAuthentication getPasswordAuthentication() {
+	                return new PasswordAuthentication("noreply@eclshop.tv","193ofQf279");
+	            }
+	        });
+
+	    try {
+
+	        Message message = new MimeMessage(session);
+	        message.setFrom(new InternetAddress("noreply@eclshop.tv"));
+	        message.setRecipients(Message.RecipientType.TO,
+	                InternetAddress.parse(address));
+	        message.setSubject(obj);
+	        message.setText(text);
+
+	        Transport.send(message);
+
+	        System.out.println("Done");
+
+	    } catch (MessagingException e) {
+	        throw new RuntimeException(e);
+	    }
+	}
+	
+	public static void main(String[] args){
+		String testb	=	"pippo";
+		String obj		=	"test";
+		String mailB	=	"paride.casulli@gmail.com";
+		sendEmail(testb,obj,mailB);
 	}
 
 }

@@ -17,18 +17,22 @@ public class ConfigurationSpout extends BaseRichSpout{
 	int genInterval	=	10000;
 	int alreadyGenerated	=	0;
 	int changeGenerationRate=	32;
+	boolean generatedAll	=	false;
 	private SpoutOutputCollector collector;
 	private int maxTh;
 	private long msgId = 0;
 	long beginning	=	System.currentTimeMillis();
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	public ConfigurationSpout(int maxTh){
+		super();
+		this.maxTh	=	maxTh;
+	}
+	
 	@Override
 	public void nextTuple() {
+		System.out.println("GENERATING TUPLE!!!");
 		double 	epsilon;
 		double 	alpha;
 		double 	yota;
@@ -40,7 +44,8 @@ public class ConfigurationSpout extends BaseRichSpout{
 					epsilon	=	k*0.1;
 					for(int l=1;l<=maxTh/2;l++){
 						collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
-						this.logger.debug("generated tuple");
+						//this.logger.debug("generated tuple");
+						System.out.println("tuple generated eps "+epsilon+" yota "+yota+" alpha "+alpha+" step "+l);
 						if(msgId>32){
 							Utils.sleep(genInterval);
 						}
@@ -48,7 +53,7 @@ public class ConfigurationSpout extends BaseRichSpout{
 				}
 			}
 		}
-        
+		this.generatedAll	=	true;
 	}
 
 	@Override

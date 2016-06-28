@@ -20,7 +20,7 @@ public class SimulationBolt extends BaseBasicBolt{
 
 	@Override
 	public void execute(Tuple arg0, BasicOutputCollector arg1) {
-		logger.debug("incoming tuple");
+		System.out.println("incoming tuple");
 		// TODO Auto-generated method stub
 		 //SimulationMain main	=	new SimulationMain(32,3,0,450,epsilon,yota,alpha,beginning);
 		 Thread executor	=	new Thread();
@@ -34,6 +34,7 @@ public class SimulationBolt extends BaseBasicBolt{
 			long 	beginning	=	arg0.getLong(4);
 			SimulationMain main	=	new SimulationMain(32,3,0,450,epsilon,yota,alpha,beginning);
 			Thread simTh		=	new Thread(main);
+			System.out.println("starting simulation");
 			simTh.start();
 			simTh.join();
 			double  value		=	main.totalReward;
