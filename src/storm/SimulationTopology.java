@@ -30,7 +30,7 @@ public class SimulationTopology {
     	}
     	else{
 	    	try {
-	    		conf.setNumWorkers(4);
+	    		conf.setNumWorkers(8);
 				StormSubmitter.submitTopology(args[0]+"", conf, builder.createTopology());
 			} catch (AlreadyAliveException | InvalidTopologyException | AuthorizationException e) {
 				// TODO Auto-generated catch block

@@ -47,7 +47,7 @@ public class ConfigurationSpout extends BaseRichSpout{
 							collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
 							//this.logger.debug("generated tuple");
 							System.out.println("tuple generated eps "+epsilon+" yota "+yota+" alpha "+alpha+" step "+l);
-							Utils.sleep(1000);
+							Utils.sleep(300);
 						}
 					}
 				}
