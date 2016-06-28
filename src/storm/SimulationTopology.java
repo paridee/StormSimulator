@@ -15,7 +15,7 @@ public class SimulationTopology {
     public static void main(String[] args){
         TopologyBuilder builder = new TopologyBuilder();
         Config conf = new Config();
-    	conf.setMessageTimeoutSecs(360000);
+    	conf.setMessageTimeoutSecs(3600000);
     	
     	
     	conf.setDebug(true);

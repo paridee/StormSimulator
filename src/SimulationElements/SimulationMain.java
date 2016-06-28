@@ -71,7 +71,7 @@ public class SimulationMain implements Runnable{
 		bolts.add(firstLevel);
 		bolts.add(secondLevel);
 		SimulatedRewardCalculator		rewarder	=	new ParabolicProcessTimeRewardCalculator(2000, 100,
-				3000,maxConcurrentThreads,latMon,bolts,false);
+				3000,maxConcurrentThreads,latMon,bolts,true);
 		actionsN	=	2*bolts.size()+1;
 		
 		ExecutorIncreaserDecreaser		executor	=	new ExecutorIncreaserDecreaser(bolts,maxConcurrentThreads,1);
