@@ -32,21 +32,23 @@ public class ConfigurationSpout extends BaseRichSpout{
 	
 	@Override
 	public void nextTuple() {
-		System.out.println("GENERATING TUPLE!!!");
-		double 	epsilon;
-		double 	alpha;
-		double 	yota;
-		for(int i=1;i<10;i++){
-			yota	=	i*0.1;
-			for(int j=1;j<10;j++){
-				alpha	=	j*0.1;
-				for(int k=0;k<10;k++){
-					epsilon	=	k*0.1;
-					for(int l=1;l<=maxTh/2;l++){
-						collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
-						//this.logger.debug("generated tuple");
-						System.out.println("tuple generated eps "+epsilon+" yota "+yota+" alpha "+alpha+" step "+l);
-						Utils.sleep(1000);
+		if(generatedAll==false){
+			System.out.println("GENERATING TUPLE!!!");
+			double 	epsilon;
+			double 	alpha;
+			double 	yota;
+			for(int i=1;i<10;i++){
+				yota	=	i*0.1;
+				for(int j=1;j<10;j++){
+					alpha	=	j*0.1;
+					for(int k=0;k<10;k++){
+						epsilon	=	k*0.1;
+						for(int l=1;l<=maxTh/2;l++){
+							collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
+							//this.logger.debug("generated tuple");
+							System.out.println("tuple generated eps "+epsilon+" yota "+yota+" alpha "+alpha+" step "+l);
+							Utils.sleep(1000);
+						}
 					}
 				}
 			}
