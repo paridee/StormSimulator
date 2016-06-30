@@ -1,5 +1,7 @@
 package SimulationElements;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,6 +53,18 @@ public class SimulatedEpsilonGreedyChooser implements SimulatedPolicyChooser {
 				tempaction	=	i;
 				tempvalue	=	q[currentState][i];
 			}
+		}
+		//check if is the only action with that value
+		ArrayList<Integer> valueActions	=	new ArrayList<Integer>();
+		for(int i=1;i<q[currentState].length;i++){
+			if(q[currentState][i]==tempvalue){
+				valueActions.add(i);
+			}
+		}
+		if(valueActions.size()!=1){
+			logger.debug("not a single action with value "+tempvalue);
+			int index	=	((int)(Math.random()*valueActions.size()))%valueActions.size();
+			return valueActions.get(index);
 		}
 		return tempaction;
 	}
