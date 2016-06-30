@@ -70,8 +70,8 @@ public class SimulationMain implements Runnable{
 		IntermediateBolt 				firstLevel	=	new IntermediateBolt(maxConcurrentThreads,10,secondLevel,testScheduler,staticManager,simElements,"firstlevel",generator);
 		bolts.add(firstLevel);
 		bolts.add(secondLevel);
-		SimulatedRewardCalculator		rewarder	=	new ParabolicProcessTimeRewardCalculator(2000, 100,
-				3000,maxConcurrentThreads,latMon,bolts,true);
+		SimulatedRewardCalculator		rewarder	=	new ParabolicProcessTimeRewardCalculator(3000, 125,
+				4500,maxConcurrentThreads,latMon,bolts,true);
 		actionsN	=	2*bolts.size()+1;
 		
 		ExecutorIncreaserDecreaser		executor	=	new ExecutorIncreaserDecreaser(bolts,maxConcurrentThreads,1);
@@ -121,7 +121,7 @@ public class SimulationMain implements Runnable{
 				qMatrix[i][j].set(0);
 			}
 		}
-		SimulatedSarsa	sarsa	=	new SimulatedSarsa(statesN,actionsN,1,new SimulatedEpsilonGreedyChooser(epsilonLevel),executor, new LatencyStateReader(latMon,1000,3000),new SimulatedStaticAlphaCalculator(alpha),testScheduler,rewarder,staticManager,this,yotaParameter);
+		SimulatedSarsa	sarsa	=	new SimulatedSarsa(statesN,actionsN,1,new SimulatedEpsilonGreedyChooser(epsilonLevel),executor, new LatencyStateReader(latMon,1500,4500),new SimulatedStaticAlphaCalculator(alpha),testScheduler,rewarder,staticManager,this,yotaParameter);
 		simElements.add(sarsa);
 		//SimulatedDynaQ	dynaQ	=	new SimulatedDynaQ(statesN,concurrentThreads,0,new SimulatedEpsilonGreedyChooser(0.1),new SimulatedFibonacciActionExecutor(),new SimulatedQueueLengthStateReader(15,45),new SimulatedStaticAlphaCalculator(),5,0.95,testScheduler,manager,new SimulatedQueueLengthRewarder());	
 		//simElements.add(dynaQ);
