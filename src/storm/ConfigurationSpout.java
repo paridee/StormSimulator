@@ -37,12 +37,12 @@ public class ConfigurationSpout extends BaseRichSpout{
 			double 	epsilon;
 			double 	alpha;
 			double 	yota;
-			for(int i=10;i>0;i--){
+			for(int i=1;i<10;i++){
 				yota	=	i*0.1;
 				for(int j=10;j>0;j--){
 					alpha	=	j*0.1;
-					for(int k=0;k<10;k++){
-						epsilon	=	k*0.1;
+					for(int k=0;k<6;k++){
+						epsilon	=	k*0.05;
 						for(int l=1;l<=maxTh/2;l++){
 							collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
 							//this.logger.debug("generated tuple");
