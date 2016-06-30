@@ -1,6 +1,7 @@
 package operator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ import SimulationElements.ValueGenerator;
 public class IntermediateBoltWorker implements Simulation {
 	public final static Logger logger	=	LoggerFactory.getLogger(IntermediateBoltWorker.class);
 	long nextFree	=	0;
-	long exTimes[]	=	new long[10];	//take execution times in a bucket of 10
+	HashMap<Integer,Long> exTimes	=	new HashMap<Integer,Long>();
 	int id				=	0;	
 	SimulationScheduler	sched;
 	IntervalManager manager;
@@ -29,16 +30,26 @@ public class IntermediateBoltWorker implements Simulation {
 	public IntermediateBoltWorker(SimulationScheduler sched,IntervalManager manager,IntermediateBolt bolt,Bolt nextBolt,int id,ValueGenerator generator) {
 		super();
 		this.sched = sched;
-		exTimes[0]	=	96;
-		exTimes[1]	=	153;
-		exTimes[2]	=	248;
-		exTimes[3]	=	397;
-		exTimes[4]	=	649;
-		exTimes[5]	=	1045;
-		exTimes[6]	=	1694;
-		exTimes[7]	=	2764;
-		exTimes[8]	=	4858;
-		exTimes[9]	=	7619;
+		exTimes.put(25, (long) 1);
+		exTimes.put(26, (long) 1);
+		exTimes.put(27, (long) 2);
+		exTimes.put(28, (long) 3);
+		exTimes.put(29, (long) 5);
+		exTimes.put(30, (long) 8);
+		exTimes.put(31, (long) 13);
+		exTimes.put(32, (long) 21);
+		exTimes.put(33, (long) 35);
+		exTimes.put(34, (long) 57);
+		exTimes.put(35, (long) 95);
+		exTimes.put(36, (long) 156);
+		exTimes.put(37, (long) 250);
+		exTimes.put(38, (long) 391);
+		exTimes.put(39, (long) 659);
+		exTimes.put(40, (long) 1068);
+		exTimes.put(41, (long) 1713);
+		exTimes.put(42, (long) 2772);
+		exTimes.put(43, (long) 4492);
+		exTimes.put(44, (long) 7256);
 		this.id		=	id;
 		this.manager=	manager;
 		this.owner	=	bolt;
@@ -73,8 +84,7 @@ public class IntermediateBoltWorker implements Simulation {
 						}
 						IntegerTuple tuple	=	this.queue.remove(0);
 						//logger.debug(owner.label+" Worker "+this.id+" free, getting element from queue elapsed "+(this.sched.simulatedTime-tuple.timestamp)+" from tuple generation, time elapsed "+sched.getElapsedTime());
-						int index	=	tuple.value-35;
-						long simTime=exTimes[index];
+						long simTime=exTimes.get(tuple.value);
 						this.nextFree	=	simTime+sched.simulatedTime;
 						//this.manager.evaluateRespTime(simTime);
 						//logger.debug(owner.label+" Worker "+this.id+" busy till "+nextFree);
