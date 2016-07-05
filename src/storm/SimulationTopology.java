@@ -20,7 +20,7 @@ public class SimulationTopology {
     	
     	conf.setDebug(true);
     	builder.setSpout("spout", new ConfigurationSpout(32), 1);
-    	builder.setBolt("firststage", new SimulationBolt(), 32).shuffleGrouping("spout").setNumTasks(16);
+    	builder.setBolt("firststage", new SimulationBolt(), 32).shuffleGrouping("spout").setNumTasks(26);
     	builder.setBolt("finalstage", new ResultsBolt(), 1).shuffleGrouping("firststage");
     	if(args.length==0){
     		conf.setMaxTaskParallelism(3);

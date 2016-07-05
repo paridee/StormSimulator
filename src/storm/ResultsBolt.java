@@ -48,7 +48,7 @@ public class ResultsBolt extends BaseBasicBolt{
 			String body		=	"New best configuration found, value "+reward+" epsilon "+epsilon+" alpha "+alpha+" yota "+yota;
 			String address	=	"paride.casulli@gmail.com";
 			String obj		=	"Better configuration found!";
-			sendEmail(body, obj, address);
+			sendEmail(body+" \n"+report, obj, address);
 		}
 		report	=	report+reward+","+epsilon+","+alpha+","+yota+";\n";
 		if(++counter%30==0){
