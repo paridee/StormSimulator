@@ -21,11 +21,13 @@ import org.slf4j.LoggerFactory;
 import simulation.SimulationMain;
 
 public class ResultsBolt extends BaseBasicBolt{
+	public static int counter	=	1;
 	public final static Logger logger	=	LoggerFactory.getLogger(ResultsBolt.class);
 	static double 	bestEpsilon		=	0;
 	static double 	bestAlpha		=	0;
 	static double 	bestYota		=	0;
 	static double  	bestReward		=	Double.NEGATIVE_INFINITY;
+	String report	=	"Reward,Epsilon,Alpha,Yota;\n";
 	/**
 	 * 
 	 */
@@ -34,10 +36,6 @@ public class ResultsBolt extends BaseBasicBolt{
 	@Override
 	public void execute(Tuple arg0, BasicOutputCollector arg1) {
 		// TODO Auto-generated method stub
-		for(int i=0;i<100;i++){
-			//System.out.println("TESTTTTTTTTTTTTTTTTTTt");
-		}
-		//System.out.println("FINAL STEP");
 		double 	epsilon		=	arg0.getDouble(0);
 		double 	alpha		=	arg0.getDouble(2);;
 		double 	yota		=	arg0.getDouble(1);
@@ -50,7 +48,13 @@ public class ResultsBolt extends BaseBasicBolt{
 			String body		=	"New best configuration found, value "+reward+" epsilon "+epsilon+" alpha "+alpha+" yota "+yota;
 			String address	=	"paride.casulli@gmail.com";
 			String obj		=	"Better configuration found!";
-			this.sendEmail(body, obj, address);
+			sendEmail(body, obj, address);
+		}
+		report	=	report+reward+","+epsilon+","+alpha+","+yota+";\n";
+		if(++counter%30==0){
+			String obj		=	"Configurations report";
+			String address	=	"paride.casulli@gmail.com";
+			sendEmail(report, obj, address);
 		}
 	}
 
