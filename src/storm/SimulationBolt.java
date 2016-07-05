@@ -9,7 +9,7 @@ import org.apache.storm.tuple.Values;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import SimulationElements.SimulationMain;
+import simulation.SimulationMain;
 
 public class SimulationBolt extends BaseBasicBolt{
 	public final static Logger logger	=	LoggerFactory.getLogger(SimulationBolt.class);
@@ -30,15 +30,16 @@ public class SimulationBolt extends BaseBasicBolt{
 			double 	epsilon		=	arg0.getDouble(0);
 			double 	alpha		=	arg0.getDouble(2);;
 			double 	yota		=	arg0.getDouble(1);
-			int 	step		=	arg0.getInteger(3);
-			long 	beginning	=	arg0.getLong(4);
-			SimulationMain main	=	new SimulationMain(32,3,0,450,epsilon,yota,alpha,beginning);
+			long 	beginning	=	arg0.getLong(3);
+			DecisionSteps steps	=	(DecisionSteps)arg0.getValue(4);
+			logger.debug("simulation steps "+steps);
+			SimulationMain main	=	new SimulationMain(32,3,0,450,epsilon,yota,alpha,beginning,steps.steps);
 			Thread simTh		=	new Thread(main);
 			System.out.println("starting simulation");
 			simTh.start();
 			simTh.join();
 			double  value		=	main.totalReward;
-			arg1.emit(new Values(epsilon,yota,alpha,step,value));
+			arg1.emit(new Values(epsilon,yota,alpha,value));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +48,7 @@ public class SimulationBolt extends BaseBasicBolt{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer arg0) {
-		arg0.declare(new Fields("epsilon", "yota", "alpha","step","value"));
+		arg0.declare(new Fields("epsilon", "yota", "alpha","value"));
 	}
 
 }

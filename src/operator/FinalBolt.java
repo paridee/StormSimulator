@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import SimulationElements.IntervalManager;
-import SimulationElements.SimulatedEvalIntervalManager;
-import SimulationElements.Simulation;
-import SimulationElements.SimulationScheduler;
+import simulation.IntervalManager;
+import simulation.SimulatedEvalIntervalManager;
+import simulation.Simulation;
+import simulation.SimulationScheduler;
 
 public class FinalBolt extends Bolt {
 	public final static Logger logger	=	LoggerFactory.getLogger(FinalBolt.class);

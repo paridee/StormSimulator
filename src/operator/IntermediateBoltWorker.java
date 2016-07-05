@@ -6,12 +6,12 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import SimulationElements.IntervalManager;
-import SimulationElements.SimulatedEvalIntervalManager;
-import SimulationElements.Simulation;
-import SimulationElements.SimulationMain;
-import SimulationElements.SimulationScheduler;
-import SimulationElements.ValueGenerator;
+import simulation.IntervalManager;
+import simulation.SimulatedEvalIntervalManager;
+import simulation.Simulation;
+import simulation.SimulationMain;
+import simulation.SimulationScheduler;
+import simulation.ValueGenerator;
 
 public class IntermediateBoltWorker implements Simulation {
 	public final static Logger logger	=	LoggerFactory.getLogger(IntermediateBoltWorker.class);
@@ -84,6 +84,7 @@ public class IntermediateBoltWorker implements Simulation {
 						}
 						IntegerTuple tuple	=	this.queue.remove(0);
 						//logger.debug(owner.label+" Worker "+this.id+" free, getting element from queue elapsed "+(this.sched.simulatedTime-tuple.timestamp)+" from tuple generation, time elapsed "+sched.getElapsedTime());
+						//System.out.println("tuple value "+tuple.value);
 						long simTime=exTimes.get(tuple.value);
 						this.nextFree	=	simTime+sched.simulatedTime;
 						//this.manager.evaluateRespTime(simTime);

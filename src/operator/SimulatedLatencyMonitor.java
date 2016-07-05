@@ -4,13 +4,13 @@ package operator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import SimulationElements.Simulation;
-import SimulationElements.SimulationScheduler;
+import simulation.Simulation;
+import simulation.SimulationScheduler;
 
 public class SimulatedLatencyMonitor implements Simulation {
 	public final static Logger logger	=	LoggerFactory.getLogger(SimulatedLatencyMonitor.class);
 	
-	double 	smoothing	=	0.3;
+	double 	smoothing	=	0.1;
 	double 	average		=	0;
 	int 	interval;
 	long	nextIntervalEnd;
@@ -36,6 +36,9 @@ public class SimulatedLatencyMonitor implements Simulation {
 		}
 	}
 
+	public double getLevel(){
+		return this.average;
+	}
 	public double getLatestStableValue(){
 		return atLatestInterval;
 	}

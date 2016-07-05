@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import SimulationElements.IntervalManager;
-import SimulationElements.SimulatedEvalIntervalManager;
-import SimulationElements.Simulation;
-import SimulationElements.SimulationScheduler;
-import SimulationElements.ValueGenerator;
+import simulation.IntervalManager;
+import simulation.SimulatedEvalIntervalManager;
+import simulation.Simulation;
+import simulation.SimulationScheduler;
+import simulation.ValueGenerator;
 
 public class IntermediateBolt extends Bolt{
 	public final static Logger logger	=	LoggerFactory.getLogger(IntermediateBolt.class);

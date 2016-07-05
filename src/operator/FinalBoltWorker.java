@@ -6,10 +6,10 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import SimulationElements.IntervalManager;
-import SimulationElements.SimulatedEvalIntervalManager;
-import SimulationElements.Simulation;
-import SimulationElements.SimulationScheduler;
+import simulation.IntervalManager;
+import simulation.SimulatedEvalIntervalManager;
+import simulation.Simulation;
+import simulation.SimulationScheduler;
 
 public class FinalBoltWorker implements Simulation{
 	public final static Logger logger	=	LoggerFactory.getLogger(FinalBoltWorker.class);

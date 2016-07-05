@@ -1,6 +1,6 @@
 package operator;
 
-import SimulationElements.ValueGenerator;
+import simulation.ValueGenerator;
 
 public class RandomIntegerGenerator implements ValueGenerator{
 	int low;

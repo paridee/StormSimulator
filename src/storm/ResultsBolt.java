@@ -18,14 +18,13 @@ import org.apache.storm.tuple.Tuple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import SimulationElements.SimulationMain;
+import simulation.SimulationMain;
 
 public class ResultsBolt extends BaseBasicBolt{
 	public final static Logger logger	=	LoggerFactory.getLogger(ResultsBolt.class);
 	static double 	bestEpsilon		=	0;
 	static double 	bestAlpha		=	0;
 	static double 	bestYota		=	0;
-	static int 		bestStep		=	0;
 	static double  	bestReward		=	Double.NEGATIVE_INFINITY;
 	/**
 	 * 
@@ -42,15 +41,13 @@ public class ResultsBolt extends BaseBasicBolt{
 		double 	epsilon		=	arg0.getDouble(0);
 		double 	alpha		=	arg0.getDouble(2);;
 		double 	yota		=	arg0.getDouble(1);
-		int 	step		=	arg0.getInteger(3);
-		double  reward		=	arg0.getDouble(4);
+		double  reward		=	arg0.getDouble(3);
 		if(reward>bestReward){
 			bestEpsilon		=	epsilon;
 			bestAlpha		=	alpha;
 			bestYota		=	yota;
-			bestStep		=	step;
 			bestReward		=	reward;
-			String body		=	"New best configuration found, value "+reward+" epsilon "+epsilon+" alpha "+alpha+" yota "+yota+" step "+step;
+			String body		=	"New best configuration found, value "+reward+" epsilon "+epsilon+" alpha "+alpha+" yota "+yota;
 			String address	=	"paride.casulli@gmail.com";
 			String obj		=	"Better configuration found!";
 			this.sendEmail(body, obj, address);
@@ -87,10 +84,10 @@ public class ResultsBolt extends BaseBasicBolt{
 	                InternetAddress.parse(address));
 	        message.setSubject(obj);
 	        message.setText(text);
-
+	        
 	        Transport.send(message);
 
-	        System.out.println("Done");
+	        System.out.println("Sending result, done.");
 
 	    } catch (MessagingException e) {
 	        throw new RuntimeException(e);

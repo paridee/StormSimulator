@@ -34,6 +34,12 @@ public class ConfigurationSpout extends BaseRichSpout{
 	public void nextTuple() {
 		if(generatedAll==false){
 			System.out.println("GENERATING TUPLE!!!");
+		  int[] steps		=	new int[3];
+		  steps[0]			=	2;
+		  steps[1]			=	1;
+		  steps[2]			=	4;
+		  DecisionSteps	dSteps	=	new DecisionSteps();
+		  dSteps.steps		=	steps;
 			double 	epsilon;
 			double 	alpha;
 			double 	yota;
@@ -43,12 +49,11 @@ public class ConfigurationSpout extends BaseRichSpout{
 					alpha	=	j*0.1;
 					for(int k=0;k<6;k++){
 						epsilon	=	k*0.05;
-						for(int l=1;l<=maxTh/2;l++){
-							collector.emit(new Values(epsilon, yota, alpha,l,beginning), msgId++);
-							//this.logger.debug("generated tuple");
-							System.out.println("tuple generated eps "+epsilon+" yota "+yota+" alpha "+alpha+" step "+l);
-							Utils.sleep(300);
-						}
+						collector.emit(new Values(epsilon, yota, alpha,beginning,dSteps), msgId++);
+						//this.logger.debug("generated tuple");
+						System.out.println("tuple generated eps "+epsilon+" yota "+yota+" alpha "+alpha);
+						//Utils.sleep(300);
+						Utils.sleep(30000);
 					}
 				}
 			}
@@ -64,7 +69,7 @@ public class ConfigurationSpout extends BaseRichSpout{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer arg0) {
-		arg0.declare(new Fields("epsilon", "yota", "alpha","step","beginning"));
+		arg0.declare(new Fields("epsilon", "yota", "alpha","beginning","steps"));
 	}
 
 }
